@@ -4,7 +4,6 @@ class ScheduleGenerator
   include Singleton
 
   def reGenerateSchedule(days_to_schedule=30,suggested_order=[],skip_weekends=true,skip_holidays=true)
-    db_connection = ActiveRecord::Base.connection
     todays_date = Date.today
     
     # TODO:
@@ -35,6 +34,7 @@ class ScheduleGenerator
         next
       end
       
+      # create new schedules   
       if !employee.work_restrictions.find_by date: date
         # No work restrictions, today!
         employee.shifts.create({on_call_date: date})
@@ -45,7 +45,6 @@ class ScheduleGenerator
           employee_counter += 1
         end
       end
-    end
-    # create new schedules    
+    end  
   end
 end
