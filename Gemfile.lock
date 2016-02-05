@@ -39,6 +39,7 @@ GEM
     erubis (2.7.0)
     execjs (2.6.0)
     hike (1.2.3)
+    holidays (3.1.2)
     i18n (0.7.0)
     jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
@@ -91,6 +92,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  holidays
   jquery-rails
   rails (= 4.1.12)
   spring
