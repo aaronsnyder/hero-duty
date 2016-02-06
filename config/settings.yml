@@ -1,3 +1,12 @@
+days_to_schedule:
+  30
+  
+skip_weekends:
+  true
+  
+skip_holidays:
+  true
+
 predefined_shift_order:
 - Sherry
 - Boris
