@@ -16,7 +16,7 @@ class ScheduleGenerator
     
     employee_counter = 0
     (0..Settings.days_to_schedule).each do |i|
-      date = start_of_month + i
+      date = start_of_month + i    
       
       if date == end_of_month
         break

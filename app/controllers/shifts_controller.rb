@@ -1,6 +1,11 @@
 class ShiftsController < ApplicationController
   def index
-    @shifts = Shift.all    
+    if Settings.hide_previous_days
+      @shifts = Shift.where("on_call_date >= ?", Date.today)
+    else
+      @shifts = Shift.all  
+    end
+      
     @shifts.each do |shift|
       if shift.on_call_date == Date.today
         @current_shift = shift
@@ -9,7 +14,12 @@ class ShiftsController < ApplicationController
   end
   
   def show
-    @shifts = Shift.includes(:employee).where(:employees => {:first_name => params[:first_name]})
+    if Settings.hide_previous_days
+      @shifts = Shift.includes(:employee).where("on_call_date >= ?", Date.today).where(:employees => {:first_name => params[:first_name]})
+    else
+      @shifts = Shift.includes(:employee).where(:employees => {:first_name => params[:first_name]})
+    end
+    
     @hero = params[:first_name]
   end
   
