@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206053538) do
+ActiveRecord::Schema.define(version: 20160206212759) do
 
   create_table "employees", force: true do |t|
     t.string   "first_name"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shift_swaps", force: true do |t|
+    t.integer  "original_shift_id"
+    t.integer  "new_shift_id"
+    t.integer  "requesting_employee_id"
+    t.integer  "approving_employee_id"
+    t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

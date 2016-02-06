@@ -66,11 +66,8 @@ a {
 }
 
 #currentHeroJumbotron {
-/*  background-color:#307688;*/
-/*  color:#FFF;*/
   border-radius: 2px;
-  text-align: center;
-  
+  text-align: center;  
   background-color:#8ad7d4;
 }
 
@@ -79,21 +76,17 @@ a {
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 2px;
-/*  background-color:#8ad7d4;*/
   font-size:20px;
   background-color:#307688;
   color:#FFF;
 }
 
 .futureHero.current {
-/*  background-color:#307688;*/
-/*  color:#FFF;*/
-  
   background-color:#8ad7d4;
   color:#333;
 }
 
-.unavailableButton {
+.futureHero a {
   font-size:12px !important;
   color:#333;
 }
@@ -101,4 +94,8 @@ a {
 .unavailable {
   background-color:#dd7f2e;
   color:#333;
+}
+
+.shiftSwapConfirmLink, .shiftSwapCancelLink {
+  display:none;
 }

@@ -2,6 +2,32 @@
 
 <h2><%= @hero %>'s Support Hero Shifts</h2>
 
-<%= render "shared/show_schedule" %>
+<% @shifts.each do |shift| %>
+  <% 
+    if shift.on_call_date == Date.today
+      class_assignment = "futureHero current"
+    else
+      class_assignment = "futureHero"
+    end 
+    
+    unavailable = false
+    if shift.employee.work_restrictions.find_by date: shift.on_call_date
+      class_assignment = class_assignment + " unavailable"
+      unavailable = true
+    end
+  %>
+    <p class="<%= class_assignment %>">      
+      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>      
+      <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %>        
+        <span class="pull-right">                    
+          <% if unavailable %>
+            <%= link_to "I'm Available", destroy_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableButton" %>            
+          <% else %>
+            <%= link_to "I'm Not Available", create_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableButton" %>
+          <% end %>
+        </span>      
+      <% end %>
+    </p>
+<% end %>
 
 <%= link_to "< Back to all shifts", shifts_path %>

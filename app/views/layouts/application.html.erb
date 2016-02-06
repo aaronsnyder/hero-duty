@@ -33,8 +33,19 @@
           </div>
         <% end %>        
       </div>
-  </div>
-</nav>
+    </div>
+  </nav>
+  
+  <% if pending_shift_swaps %>
+    <% pending_shift_swaps.each do |swap| %>
+      <div class="alert alert-warning">
+        <%= swap.original_shift.employee.first_name %> wants to swap shifts with you! 
+        Their <%= swap.original_shift.on_call_date %> shift for your <%= swap.new_shift.on_call_date %> shift.
+        <%= link_to "Approve Swap", approve_shift_swap_path(swap.id) %>
+      </div>
+    <% end %>
+  <% end %>
+  
   <div class="container">
     <%= yield %>
   </div>
