@@ -12,4 +12,28 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-theme.min.css
+ *= require bootstrap.min.css
  */
+
+.container {
+  margin-top:10px;
+}
+
+#currentHero {
+  background-color:#307688;
+  color:#FFF;
+}
+
+.futureHero {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color:#8ad7d4;
+}
+
+.futureHero.current {
+  background-color:#307688;
+  color:#FFF;
+}

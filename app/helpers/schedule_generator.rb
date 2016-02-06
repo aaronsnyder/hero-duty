@@ -1,10 +1,11 @@
 require 'singleton'
+require 'active_support'
 
 class ScheduleGenerator
   include Singleton
 
   def reGenerateSchedule()
-    todays_date = Date.today
+    start_of_month = Date.today.beginning_of_month
     
     # grab the suggested order from yaml config file
     suggested_order = Settings.predefined_shift_order
@@ -14,7 +15,7 @@ class ScheduleGenerator
     
     employee_counter = 0
     (0..Settings.days_to_schedule).each do |i|
-      date = todays_date + i
+      date = start_of_month + i
       
       if Settings.skip_weekends and (date.saturday? or date.sunday?)
         next

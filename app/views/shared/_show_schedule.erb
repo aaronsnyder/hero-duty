@@ -1,0 +1,8 @@
+
+<% @shifts.each do |shift| %>
+  <% if shift.on_call_date == Date.today %>
+    <p class="futureHero current"><%= shift.on_call_date %> <%= shift.employee.first_name %></p>
+  <% else %>
+    <p class="futureHero"><%= shift.on_call_date %> <%= shift.employee.first_name %></p>
+  <% end %>
+<% end %>
