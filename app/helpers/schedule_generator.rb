@@ -30,22 +30,37 @@ class ScheduleGenerator
         next
       end
       
-      employee = Employee.find_by first_name: suggested_order[employee_counter]
-      if !employee
-        # we didn't find this employee...moving on!        
-        next
-      end
+      available_employee_found = false
+      try_counter = 0
+      while !available_employee_found
+        employee = Employee.find_by first_name: suggested_order[employee_counter]
+        if !employee
+          # we didn't find this employee...moving on!
+          employee_counter += 1
+          next
+        end  
+        if employee.work_restrictions.find_by date: date
+          # swap the current employee with one [try_counter] down the array
+          try_counter += 1
+          if employee_counter + try_counter > suggested_order.length
+            # we'd overflow the array, start back at 0
+            proper_offset = employee_counter + try_counter - suggested_order.length - 1
+          else
+            proper_offset = employee_counter + try_counter
+          end          
+          suggested_order[employee_counter], suggested_order[proper_offset] = suggested_order[proper_offset], suggested_order[employee_counter]  
+          next
+        end  
+        available_employee_found = true
+      end      
       
       # create new schedules   
-      if !employee.work_restrictions.find_by date: date
-        # No work restrictions, today!
-        employee.shifts.create({on_call_date: date})
-        if employee_counter == suggested_order.length
-          #start back at the beginning
-          employee_counter = 0
-        else
-          employee_counter += 1
-        end
+      employee.shifts.create({on_call_date: date})
+      if employee_counter == suggested_order.length
+        #start back at the beginning
+        employee_counter = 0
+      else
+        employee_counter += 1
       end
     end  
   end
