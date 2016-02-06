@@ -1,11 +1,8 @@
-<div id="currentHero" class="jumbotron">
-  <h1>Today's Hero:&nbsp;<%= @current_shift.employee.first_name %></h1>
+<div id="currentHeroJumbotron" class="jumbotron">
+  <h2>Today's&nbsp;Support&nbsp;Hero</h2>
+  <h1><%= @current_shift.employee.first_name %></h1>
 </div>
 
-<!--
-<h2>If you're <%= @current_shift.employee.first_name %>, AWESOME! We appreciate you!!</h2>
-<h3>Not <%= @current_shift.employee.first_name %>? It's ok! You'll get a chance to be awesome, as well...</h3>
--->
-<h2>Future Heros:</h2>
+<h3>Future Heroes in <%= Date.today.strftime("%B") %></h3>
 
 <%= render "shared/show_schedule" %>

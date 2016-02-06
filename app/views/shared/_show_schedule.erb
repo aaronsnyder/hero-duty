@@ -1,8 +1,16 @@
 
 <% @shifts.each do |shift| %>
-  <% if shift.on_call_date == Date.today %>
-    <p class="futureHero current"><%= shift.on_call_date %> <%= shift.employee.first_name %></p>
-  <% else %>
-    <p class="futureHero"><%= shift.on_call_date %> <%= shift.employee.first_name %></p>
-  <% end %>
+  <% 
+    if shift.on_call_date == Date.today
+      class_assignment = "futureHero current"
+    else
+      class_assignment = "futureHero"
+    end 
+  %>
+    <p class="<%= class_assignment %>">      
+      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>
+      <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %>
+        <span class="pull-right"><button class="unavailableButton">I'm Not Available</button></span>
+      <% end %>
+    </p>
 <% end %>

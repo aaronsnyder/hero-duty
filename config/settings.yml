@@ -1,11 +1,11 @@
 days_to_schedule:
-  30
+  35
   
 skip_weekends:
-  true
+  false
   
 skip_holidays:
-  true
+  false
 
 predefined_shift_order:
 - Sherry

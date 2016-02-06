@@ -16,24 +16,79 @@
  *= require bootstrap.min.css
  */
 
+body {
+  font-family: 'Montserrat', sans-serif!important;
+}
+
+a {
+  color:#333!important;
+}
+
+.navbar-text a {
+  color:#8ad7d4!important;
+}
+
+.navbar-header > *, .navbar-link, .navbar-inverse {
+  color:#FFF!important;  
+  border-radius: 0px!important;
+  background-color: #4c4c4c!important;
+  border-color:transparent!important;
+}
+
+.container-fluid {
+  background-color: #4c4c4c;
+}
+
+.navbar-text {
+  color:#FFF!important; 
+}
+
+.navbar-brand .logo {
+  font-size: 30px;
+}
+
+.navbar-right {
+   padding-right: 15px;
+}
+
+.logLink {
+  display:inline-block;
+  margin: 0 20px;
+}
+
 .container {
   margin-top:10px;
 }
 
-#currentHero {
-  background-color:#307688;
-  color:#FFF;
+#currentHeroJumbotron {
+/*  background-color:#307688;*/
+/*  color:#FFF;*/
+  border-radius: 2px;
+  text-align: center;
+  
+  background-color:#8ad7d4;
 }
 
 .futureHero {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
-  background-color:#8ad7d4;
+  border-radius: 2px;
+/*  background-color:#8ad7d4;*/
+  font-size:20px;
+  background-color:#307688;
+  color:#FFF;
 }
 
 .futureHero.current {
-  background-color:#307688;
-  color:#FFF;
+/*  background-color:#307688;*/
+/*  color:#FFF;*/
+  
+  background-color:#8ad7d4;
+  color:#333;
+}
+
+.unavailableButton {
+  font-size:12px !important;
+  color:#333;
 }

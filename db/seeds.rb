@@ -7,16 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Employee.create([
-  {first_name: 'Sherry'},
-  {first_name: 'Boris'},
-  {first_name: 'Vicente'},
-  {first_name: 'Matte'},
-  {first_name: 'Jack'},
-  {first_name: 'Kevin'},
-  {first_name: 'Zoe'},
-  {first_name: 'Jay'},
-  {first_name: 'Eadon'},
-  {first_name: 'Franky'},
-  {first_name: 'Luis'},
-  {first_name: 'James'}
+  {first_name: 'Sherry',password: 'Sherry'},
+  {first_name: 'Boris',password: 'Boris'},
+  {first_name: 'Vicente',password: 'Vicente'},
+  {first_name: 'Matte',password: 'Matte'},
+  {first_name: 'Jack',password: 'Jack'},
+  {first_name: 'Kevin',password: 'Kevin'},
+  {first_name: 'Zoe',password: 'Zoe'},
+  {first_name: 'Jay',password: 'Jay'},
+  {first_name: 'Eadon',password: 'Eadon'},
+  {first_name: 'Franky',password: 'Franky'},
+  {first_name: 'Luis',password: 'Luis'},
+  {first_name: 'James',password: 'James'}
 ])
+
+ScheduleGenerator.instance.reGenerateSchedule
