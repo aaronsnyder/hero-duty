@@ -12,7 +12,7 @@ class ShiftSwapsController < ApplicationController
       })
     end
     
-    redirect_to shifts_path
+    redirect_to shifts_path, :notice => "Shift swap requested and pending. Waiting on #{new_shift.employee.first_name} for approval."
   end
   
   def approve
@@ -26,7 +26,7 @@ class ShiftSwapsController < ApplicationController
       new_shift.update({employee_id: swap.requesting_employee_id})
     end
     
-    redirect_to shifts_path
+    redirect_to shifts_path, :notice => "Shift swap complete."
   end
   
   private

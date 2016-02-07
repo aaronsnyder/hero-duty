@@ -4,7 +4,7 @@ class AdminActionsController < ApplicationController
   
   def regenerateSchedules
     ScheduleGenerator.instance.reGenerateSchedule
-    redirect_to shifts_path
+    redirect_to shifts_path, :notice => "Schedules re-generated for current month."
   end
   
   def generateSchedules
@@ -14,7 +14,9 @@ class AdminActionsController < ApplicationController
     # only generate new schedules for next month if you have to
     if first_shift_next_month.nil? or last_shift_next_month.nil?
       ScheduleGenerator.instance.generateSchedule
+    else
+      redirect_to shifts_path, :notice => "Schedules for next month already exist. No schedules generated."  
     end
-    redirect_to shifts_path
+    redirect_to shifts_path, :notice => "New schedules have been generated for next month."
   end
 end

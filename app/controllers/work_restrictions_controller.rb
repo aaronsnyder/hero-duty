@@ -4,7 +4,7 @@ class WorkRestrictionsController < ApplicationController
     if employee
       employee.work_restrictions.create({date: params[:date]})
     end    
-    redirect_to :back
+    redirect_to :back, notice: "You are now marked as unavailable for work on #{params[:date]}."
   end
   
   def destroy
@@ -12,6 +12,6 @@ class WorkRestrictionsController < ApplicationController
     if employee
       employee.work_restrictions.find_by(date: params[:date]).delete
     end    
-    redirect_to :back
+    redirect_to :back, notice: "You are no longer marked as unavailable for work on #{params[:date]}."
   end
 end

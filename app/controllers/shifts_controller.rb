@@ -21,7 +21,7 @@ class ShiftsController < ApplicationController
     if shift
       shift.update({employee_id: current_user.id})
     end
-    redirect_to shifts_path
+    redirect_to shifts_path, :notice => "You have picked up a shift on #{shift.on_call_date}."
   end
   
   private

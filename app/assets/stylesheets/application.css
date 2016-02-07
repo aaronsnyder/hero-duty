@@ -99,3 +99,15 @@ a {
 .shiftSwapConfirmLink, .shiftSwapCancelLink {
   display:none;
 }
+
+.alert {
+  border-radius: 2px;
+}
+
+.alert-notice {
+  background-color:#f7f4dd;
+}
+
+.alert-alert {
+  background-color:#fcf0f0;
+}
