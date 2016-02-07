@@ -16,6 +16,7 @@ class AdminActionsController < ApplicationController
       ScheduleGenerator.instance.generateSchedule
     else
       redirect_to shifts_path, :notice => "Schedules for next month already exist. No schedules generated."  
+      return
     end
     redirect_to shifts_path, :notice => "New schedules have been generated for next month."
   end
