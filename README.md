@@ -59,6 +59,13 @@ You must be logged in as admin to re-generate the schedule for the current month
 -----
 Additional settings are available to alter application behavior. 
 
+If shifts should automatically be rescheduled when an employee indicates that they're unavailable: 
+
+          autoswap_shift_when_unavailable:
+              true
+              
+Note, when disabled, employees will have the oppertunity to pick up any shift for which the assigned employee has become unavailable, rather than being force-swapped.               
+
 If employees should not be assigned shifts on weekends, you can disable this behavior by setting: 
 
           skip_weekends:
