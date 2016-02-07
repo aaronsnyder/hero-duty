@@ -57,7 +57,8 @@
   %>
     <p class="<%= class_assignment %>">      
       <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>      
-      <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %>        
+      <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %> 
+        <% # if logged in, and this shift belongs to the logged in user %>
         <span class="pull-right">                    
           <% if unavailable %>
             <%= link_to "I'm Available", destroy_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableLink" %>            
@@ -68,8 +69,12 @@
           <a class="shiftSwapCancelLink" data-shift_id="<%= shift.id %>" href="#">Cancel Shift Swap</a>
         </span>
       <% elsif current_user and current_user.first_name != shift.employee.first_name and shift.on_call_date > Date.today %>
+        <% # if logged in, and if this shift doesn't belong to the logged in user %>
         <span class="pull-right">
           <a class="shiftSwapConfirmLink" data-new_shift_id="<%= shift.id %>" href="#">Select as New Shift</a>
+          <% if unavailable %>
+            <%= link_to "Pickup Shift", pickup_shift_path(shift.id) %>
+          <% end %>
         </span>
       <% end %>
     </p>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/destroy_work_restriction/:employee_id/:date', to: 'work_restrictions#destroy', as: 'destroy_work_restriction'
   get '/shift_swap/create/:original_shift_id/:new_shift_id', to: 'shift_swaps#create', as: 'create_shift_swap'
   get '/shift_swap/approve/:id', to: 'shift_swaps#approve', as: 'approve_shift_swap'
+  get '/shift/pickup/:id', to: 'shifts#pickup', as: 'pickup_shift'
   
   resources :sessions
   resources :employees

@@ -23,8 +23,16 @@ class ShiftsController < ApplicationController
     @hero = params[:first_name]
   end
   
+  def pickup
+    shift = Shift.find(params[:id])
+    if shift
+      shift.update({employee_id: current_user.id})
+    end
+    redirect_to shifts_path
+  end
+  
   private
     def shift_params
-      params.permit(:first_name)
+      params.permit(:first_name,:id)
     end
 end
