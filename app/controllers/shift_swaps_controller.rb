@@ -39,7 +39,7 @@ class ShiftSwapsController < ApplicationController
           replacement_not_found = false
           # swap the shifts
           ShiftSwapsHelper.createShiftSwap(current_shift.id,potential_new_shift.id)
-          redirect_to shifts_path, :notice => "Shift swapped! You're new hero duty will be on #{potential_new_shift.on_call_date}."
+          redirect_to shifts_path, :notice => "Shift swap requested! Once acknowledged by #{potential_new_shift.employee.first_name}, you're new hero duty will be on #{potential_new_shift.on_call_date}."
           return
         end
         
