@@ -10,6 +10,7 @@ class ShiftSwapsController < ApplicationController
   end
   
   def approve
+    swap = ShiftSwap.find(params[:id])
     if current_user and current_user.id == swap.approving_employee_id
       ShiftSwapsHelper.approveShiftSwap(params[:id])
       redirect_to shifts_path, :notice => "Shift swap complete."
