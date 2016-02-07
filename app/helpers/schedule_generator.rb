@@ -6,7 +6,7 @@ class ScheduleGenerator
 
   def reGenerateSchedule()
     start_of_month = Date.today.beginning_of_month
-    end_of_month = Date.today.end_of_month
+    end_of_next_month = Date.today.end_of_month.next_month
     
     # grab the suggested order from yaml config file
     suggested_order = Settings.predefined_shift_order
@@ -18,7 +18,7 @@ class ScheduleGenerator
     (0..Settings.days_to_schedule).each do |i|
       date = start_of_month + i    
       
-      if date == end_of_month
+      if date == end_of_next_month
         break
       end
       
@@ -33,18 +33,21 @@ class ScheduleGenerator
       available_employee_found = false
       try_counter = 0
       while !available_employee_found
+        if employee_counter >= suggested_order.length
+          employee_counter = 0
+        end
         employee = Employee.find_by first_name: suggested_order[employee_counter]
         if !employee
           # we didn't find this employee...moving on!
-          employee_counter += 1
+          employee_counter += 1          
           next
         end  
         if employee.work_restrictions.find_by date: date
           # swap the current employee with one [try_counter] down the array
           try_counter += 1
-          if employee_counter + try_counter > suggested_order.length
+          if employee_counter + try_counter >= suggested_order.length
             # we'd overflow the array, start back at 0
-            proper_offset = employee_counter + try_counter - suggested_order.length - 1
+            proper_offset = employee_counter + try_counter - suggested_order.length
           else
             proper_offset = employee_counter + try_counter
           end          
