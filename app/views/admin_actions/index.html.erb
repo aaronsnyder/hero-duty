@@ -1,7 +1,11 @@
 <%= link_to "< Back to all shifts", shifts_path %>
 
-<h3>Re-Generate Schedules</h3>
-<p>By re-generating schedules, you will automatically create new shifts based upon default order, and with consideration for work restrictions.</p>
+<h3>Generate New Schedules (totally safe)</h3>
+<p>By generating new schedules, new schedules will be created for next month</p>
+<%= link_to "Generate Schedules", action: "generateSchedules" %>
+<hr />
+<h3>Re-Generate Schedules (warning: destructive)</h3>
+<p>By re-generating schedules, you will automatically create new shifts based upon default order, and with consideration for work restrictions. This process WILL undo any shift swaps.</p>
 <%= link_to "Re-Generate Schedules", action: "regenerateSchedules" %>
 <hr />
 

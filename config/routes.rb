@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get '/shift_swap/approve/:id', to: 'shift_swaps#approve', as: 'approve_shift_swap'
   get '/shift/pickup/:id', to: 'shifts#pickup', as: 'pickup_shift'
   get '/admin_actions/', to: 'admin_actions#index'
-  get '/admin_actions/regenerate', to: 'admin_actions#regenerateSchedules', as: 'admin_actions_regenerate_path'
+  get '/admin_actions/regenerate_schedules', to: 'admin_actions#regenerateSchedules', as: 'admin_actions_regenerate_path'
+  get '/admin_actions/generate_schedules', to: 'admin_actions#generateSchedules', as: 'admin_actions_generate_path'
   
   
   resources :sessions

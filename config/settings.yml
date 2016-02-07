@@ -6,9 +6,6 @@ skip_weekends:
   
 skip_holidays:
   false
-  
-hide_previous_days:
-  true
 
 predefined_shift_order:
 - Sherry

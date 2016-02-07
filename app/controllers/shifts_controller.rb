@@ -1,26 +1,16 @@
 class ShiftsController < ApplicationController
   def index
-    if Settings.hide_previous_days
-      @shifts = Shift.where("on_call_date > ?", Date.today).where("on_call_date <= ?", Date.today + 1.month)
-    else
-      @shifts = Shift.all.limit(31)
-    end
-
+    @shifts = Shift.where("on_call_date > ?", Date.today).where("on_call_date <= ?", Date.today + 1.month)
     @current_shift = Shift.find_by on_call_date: Date.today
     
-    if @shifts.last.on_call_date < (Date.today + 3.weeks)
-      # we're running out of shifts! regenerate...
-      ScheduleGenerator.instance.reGenerateSchedule
+    if @shifts.last.on_call_date < Date.today.beginning_of_month.next_month
+      # we're running out of shifts! generate more...
+      ScheduleGenerator.instance.generateSchedule
     end
   end
   
   def show
-    if Settings.hide_previous_days
-      @shifts = Shift.includes(:employee).where("on_call_date >= ?", Date.today).where("on_call_date <= ?", Date.today + 1.month).where(:employees => {:first_name => params[:first_name]})
-    else
-      @shifts = Shift.includes(:employee).where(:employees => {:first_name => params[:first_name]}).limit(31)
-    end
-    
+    @shifts = Shift.includes(:employee).where("on_call_date >= ?", Date.today).where("on_call_date <= ?", Date.today + 1.month).where(:employees => {:first_name => params[:first_name]})
     @hero = params[:first_name]
   end
   
