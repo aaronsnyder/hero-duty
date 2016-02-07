@@ -1,6 +1,6 @@
 class WorkRestrictionsController < ApplicationController
   def create
-    employee = Employee.find(params[:employee_id])
+    employee = Employee.includes(:work_restrictions).find(params[:employee_id])
     if employee
       employee.work_restrictions.create({date: params[:date]})
     end    
@@ -8,7 +8,7 @@ class WorkRestrictionsController < ApplicationController
   end
   
   def destroy
-    employee = Employee.find(params[:employee_id])
+    employee = Employee.includes(:work_restrictions).find(params[:employee_id])
     if employee
       employee.work_restrictions.find_by(date: params[:date]).delete
     end    
