@@ -9,12 +9,11 @@
   $(document).ready(function(){    
     $('.shiftSwapRequestLink').click(function(e){
       e.preventDefault();
-      var original_shift_id = $('.shiftSwapRequestLink').data('original_shift_id');
+      var original_shift_id = $(this).data('original_shift_id');
       
       $('.unavailableLink').hide() // this just cluttered the interface
       $('.shiftSwapRequestLink').hide();
       $('.shiftSwapCancelLink').each(function(){
-        console.log($(this).data('shift_id'));
         if ($(this).data('shift_id') == original_shift_id) {
           $(this).show();
         }

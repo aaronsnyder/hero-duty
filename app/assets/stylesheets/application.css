@@ -88,7 +88,27 @@ a {
 
 .futureHero a {
   font-size:12px !important;
-  color:#333;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
 }
 
 .unavailable {
@@ -105,9 +125,9 @@ a {
 }
 
 .alert-notice {
-  background-color:#f7f4dd;
+  background-color:#9fc163;
 }
 
 .alert-alert {
-  background-color:#fcf0f0;
+  background-color:#d86e5a;
 }
