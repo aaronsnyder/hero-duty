@@ -1,10 +1,10 @@
 class ShiftSwapsController < ApplicationController
   def create
-    original_shift_id = Shift.find(params[:original_shift_id])
-    new_shift_id = Shift.find(params[:new_shift_id])
+    original_shift = Shift.find(params[:original_shift_id])
+    new_shift = Shift.find(params[:new_shift_id])
     
     if current_user.id == original_shift.employee_id and original_shift.on_call_date > Date.today and new_shift.on_call_date > Date.today
-      ShiftSwapsHelper.createShiftSwap(original_shift_id,new_shift_id)
+      ShiftSwapsHelper.createShiftSwap(original_shift.id,new_shift.id)
     end
     redirect_to shifts_path, :notice => "Shift swap requested and pending. Waiting on #{new_shift.employee.first_name} for approval."
   end
