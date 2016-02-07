@@ -18,7 +18,8 @@ Employee.create([
   {first_name: 'Eadon',password: 'eadon'},
   {first_name: 'Franky',password: 'franky'},
   {first_name: 'Luis',password: 'luis'},
-  {first_name: 'James',password: 'james'}
+  {first_name: 'James',password: 'james'},
+  {first_name: 'Admin',password: 'admin'}
 ])
 
 ScheduleGenerator.instance.reGenerateSchedule
