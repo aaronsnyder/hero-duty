@@ -3,6 +3,9 @@ skip_weekends:
   
 skip_holidays:
   false
+  
+autoswap_shift_when_unavailable:
+  false
 
 predefined_shift_order:
 - Sherry

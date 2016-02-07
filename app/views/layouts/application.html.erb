@@ -42,7 +42,7 @@
     </div>
   </nav>
   
-  <% if pending_shift_swaps %>
+  <% if current_user and pending_shift_swaps %>
     <% pending_shift_swaps.each do |swap| %>
       <div class="alert alert-warning">
         <%= swap.original_shift.employee.first_name %> wants to swap shifts with you! 
