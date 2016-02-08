@@ -5,7 +5,8 @@ class Employee < ActiveRecord::Base
   attr_accessor :password
   before_save :encrypt_password
 
-  validates_presence_of :password, :on => :create
+  validates_presence_of :first_name, :password, :on => :create
+  validates_uniqueness_of :first_name, :on => :create
   
   def self.authenticate(first_name, password)
     employee = Employee.find_by first_name: first_name
