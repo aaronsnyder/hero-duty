@@ -1,7 +1,9 @@
-<div id="currentHeroJumbotron" class="jumbotron">
-  <h2>Today's&nbsp;Support&nbsp;Hero</h2>
-  <h1><%= @current_shift.employee.first_name %></h1>
-</div>
+<% if @current_shift %>
+  <div id="currentHeroJumbotron" class="jumbotron">
+    <h2>Today's&nbsp;Support&nbsp;Hero</h2>
+    <h1><%= @current_shift.employee.first_name %></h1>
+  </div>
+<% end %>
 
 <h3>Upcoming Support Heroes</h3>
 

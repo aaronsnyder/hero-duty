@@ -32,23 +32,22 @@ class ShiftSwapsController < ApplicationController
         
         # get the next shift current employee is available for
         potential_new_shift = Shift.includes(:employee,:employee => :work_restrictions).where("on_call_date > ? AND on_call_date NOT IN (?) AND employee_id != ?",max_date_checked,current_work_restriction_dates,current_shift.employee_id).limit(1).take()
-          
-        max_date_checked = potential_new_shift.on_call_date
-        # then, see if it's employee would be available for *this* shift
-        if !potential_new_shift.employee.work_restrictions.map {|x| x.date}.include? current_shift.on_call_date
-          # hooray!
-          replacement_not_found = false
-          # swap the shifts
-          ShiftSwapsHelper.createShiftSwap(current_shift.id,potential_new_shift.id)
-          redirect_to shifts_path, :notice => "Shift swap requested! Once acknowledged by #{potential_new_shift.employee.first_name}, you're new hero duty will be on #{potential_new_shift.on_call_date}."
-          return
-        end
         
-        # create a bail-out condition, in case the state of the data is super wacky
-        if max_date_checked > Date.today + 60.days
+        if potential_new_shift
+          max_date_checked = potential_new_shift.on_call_date
+          # then, see if it's employee would be available for *this* shift
+          if !potential_new_shift.employee.work_restrictions.map {|x| x.date}.include? current_shift.on_call_date
+            # hooray!
+            replacement_not_found = false
+            # swap the shifts
+            ShiftSwapsHelper.createShiftSwap(current_shift.id,potential_new_shift.id)
+            redirect_to shifts_path, :notice => "Shift swap requested! Once acknowledged by #{potential_new_shift.employee.first_name}, you're new hero duty will be on #{potential_new_shift.on_call_date}."
+            return
+          end
+        else
           redirect_to shifts_path, :alert => "Could not auto-reschedule shift. Please work with your fellow employees to arrange a swap."
           return
-        end
+        end        
       end
     end
   end

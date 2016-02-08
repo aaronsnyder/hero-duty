@@ -39,7 +39,7 @@
     </div>
   </nav>
   <div class="container">
-    <% if current_user and pending_shift_swaps %>
+    <% if current_user and pending_shift_swaps and !Settings.autoswap_shift_when_unavailable  %>
       <% pending_shift_swaps.each do |swap| %>
         <div class="alert alert-notice  alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
