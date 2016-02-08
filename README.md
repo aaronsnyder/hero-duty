@@ -55,9 +55,11 @@ You must be logged in as a user to perform actions such as shift-swapping, addin
 
 You must be logged in as admin to re-generate the schedule for the current month or to manually generate the schedule for next month. Neither of these actions are required for normal operation.
 
+A preferred shift order was defined in config/settings.yml. This shift order is used to generate shifts from the beginning of each month.
+
 ##### Additional Settings
 -----
-Additional settings are available to alter application behavior. 
+Additional settings are available in config/settings.yml to alter application behavior. 
 
 If shifts should automatically be rescheduled when an employee indicates that they're unavailable: 
 
