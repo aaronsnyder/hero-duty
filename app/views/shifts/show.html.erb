@@ -11,7 +11,7 @@
     end 
     
     unavailable = false
-    if shift.employee.work_restrictions.find_by date: shift.on_call_date
+    if shift.employee.work_restrictions.select { |work_restriction| work_restriction.date == shift.on_call_date }.length > 0
       class_assignment = class_assignment + " unavailable"
       unavailable = true
     end
