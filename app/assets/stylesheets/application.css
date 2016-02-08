@@ -131,3 +131,11 @@ a {
 .alert-alert {
   background-color:#d86e5a;
 }
+
+.pendingSwap {
+  background-color:#5e4d94;
+}
+
+.pendingSwapSpan {
+  font-size:12px;
+}

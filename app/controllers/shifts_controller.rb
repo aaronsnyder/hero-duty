@@ -1,7 +1,7 @@
 class ShiftsController < ApplicationController
   def index
     # including :employee to remove n+1 possibility...
-    @shifts = Shift.includes(:employee,:employee => :work_restrictions).where("on_call_date > ? and on_call_date <= ?",Date.today,Date.today + 1.month).order(on_call_date: :asc)
+    @shifts = Shift.includes(:employee, :shift_swaps, :employee => :work_restrictions).where("on_call_date > ? and on_call_date <= ?",Date.today,Date.today + 1.month).order(on_call_date: :asc)
     @current_shift = Shift.find_by on_call_date: Date.today
     
     if @shifts.last.on_call_date < Date.today.beginning_of_month.next_month
@@ -12,7 +12,7 @@ class ShiftsController < ApplicationController
   
   def show    
     # including :employee to remove n+1 possibility...
-    @shifts = Shift.includes(:employee,:employee => :work_restrictions).where("on_call_date > ? and on_call_date <= ?", Date.today, Date.today + 1.month).where(:employees => {:first_name => params[:first_name]}).order(on_call_date: :asc)
+    @shifts = Shift.includes(:employee, :shift_swaps, :employee => :work_restrictions).where("on_call_date > ? and on_call_date <= ?", Date.today, Date.today + 1.month).where(:employees => {:first_name => params[:first_name]}).order(on_call_date: :asc)
     @hero = params[:first_name]
   end
   

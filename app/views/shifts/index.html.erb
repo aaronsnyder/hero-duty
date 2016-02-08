@@ -53,19 +53,30 @@
       class_assignment = class_assignment + " unavailable"
       unavailable = true
     end
+      
+    pending_swap = false
+    if shift.shift_swaps.length > 0
+      pending_swap = true
+      class_assignment = class_assignment + " pendingSwap"
+    end
   %>
     <p class="<%= class_assignment %>">      
-      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>      
+      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>
+      <% if pending_swap %>
+        <span class="pendingSwapSpan">(pending swap)</span>
+      <% end %>
       <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %> 
         <% # if logged in, and this shift belongs to the logged in user %>
-        <span class="pull-right">                    
-          <% if unavailable %>
-            <%= link_to "I'm Available", destroy_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableLink" %>            
-          <% else %>
-            <%= link_to "I'm Not Available", create_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableLink" %>
+        <span class="pull-right">
+          <% if !pending_swap %>
+            <% if unavailable %>
+              <%= link_to "I'm Available", destroy_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableLink" %>            
+            <% else %>
+              <%= link_to "I'm Not Available", create_work_restriction_path(current_user.id,shift.on_call_date), :class => "unavailableLink" %>
+            <% end %>
+            <a class="shiftSwapRequestLink" data-original_shift_id="<%= shift.id %>" href="#">Request Shift Swap</a>
+            <a class="shiftSwapCancelLink" data-shift_id="<%= shift.id %>" href="#">Cancel Shift Swap</a>
           <% end %>
-          <a class="shiftSwapRequestLink" data-original_shift_id="<%= shift.id %>" href="#">Request Shift Swap</a>
-          <a class="shiftSwapCancelLink" data-shift_id="<%= shift.id %>" href="#">Cancel Shift Swap</a>
         </span>
       <% elsif current_user and current_user.first_name != shift.employee.first_name and shift.on_call_date > Date.today %>
         <% # if logged in, and if this shift doesn't belong to the logged in user %>

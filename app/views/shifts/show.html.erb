@@ -15,9 +15,18 @@
       class_assignment = class_assignment + " unavailable"
       unavailable = true
     end
+
+    pending_swap = false
+    if shift.shift_swaps.length > 0
+      pending_swap = true
+      class_assignment = class_assignment + " pendingSwap"
+    end
   %>
     <p class="<%= class_assignment %>">      
-      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>      
+      <%= shift.on_call_date.strftime("%m/%d/%Y") %> | <%= shift.employee.first_name %>    
+      <% if pending_swap %>
+        <span class="pendingSwapSpan">(pending swap)</span>
+      <% end %>
       <% if current_user and current_user.first_name == shift.employee.first_name and shift.on_call_date >= Date.today %>        
         <span class="pull-right">                    
           <% if unavailable %>
