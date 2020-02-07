@@ -1,4 +1,4 @@
-class CreateShiftSwaps < ActiveRecord::Migration
+class CreateShiftSwaps < ActiveRecord::Migration[4.2]
   def change
     create_table :shift_swaps do |t|
       t.integer :original_shift_id
